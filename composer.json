@@ -1,0 +1,23 @@
+{
+    "name": "rukavishnikov/php-emitter",
+    "type": "library",
+    "description": "A PHP response emitter",
+    "keywords": ["php", "response", "emitter"],
+    "homepage": "https://github.com/Ilya-Ruk/php-emitter",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ilya Rukavishnikov",
+            "email": "ilya-ndt@mail.ru"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "psr/http-message": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rukavishnikov\\Php\\Emitter\\": "src/"
+        }
+    }
+}
