@@ -11,7 +11,7 @@ final class Emitter implements EmitterInterface
     /**
      * @inheritDoc
      */
-    public function emit(ResponseInterface $response, bool $withoutBody = false): void
+    public function emit(ResponseInterface $response, bool $withoutBody = false, int $bufferLength = 4096): void
     {
         // Status line
 
@@ -38,6 +38,14 @@ final class Emitter implements EmitterInterface
             return;
         }
 
-        echo $response->getBody();
+        $body = $response->getBody();
+
+        if ($body->isSeekable()) {
+            $body->rewind();
+        }
+
+        while (!$body->eof()) {
+            echo $body->read($bufferLength);
+        }
     }
 }
