@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Rukavishnikov\Php\Emitter;
 
 use Psr\Http\Message\ResponseInterface;
+use RuntimeException;
 
 final class Emitter implements EmitterInterface
 {
@@ -13,6 +14,10 @@ final class Emitter implements EmitterInterface
      */
     public function emit(ResponseInterface $response, bool $withoutBody = false, int $bufferLength = 4096): void
     {
+        if (headers_sent()) {
+            throw new RuntimeException('HTTP headers have already been sent!');
+        }
+
         // Status line
 
         $statusLine = 'HTTP/' . $response->getProtocolVersion();
