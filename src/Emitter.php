@@ -23,7 +23,7 @@ final class Emitter implements EmitterInterface
         $statusLine = 'HTTP/' . $response->getProtocolVersion();
         $statusLine .= ' ' . $response->getStatusCode();
 
-        if ($response->getReasonPhrase() !== '') {
+        if (!empty($response->getReasonPhrase())) {
             $statusLine .= ' ' . $response->getReasonPhrase();
         }
 
