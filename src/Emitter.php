@@ -32,8 +32,12 @@ final class Emitter implements EmitterInterface
         // Headers
 
         foreach ($response->getHeaders() as $name => $values) {
+            $nameNormalized = str_replace('-', ' ', $name);
+            $nameNormalized = ucwords($nameNormalized);
+            $nameNormalized = str_replace(' ', '-', $nameNormalized);
+
             foreach ($values as $value) {
-                header(sprintf("%s: %s", $name, $value), false);
+                header(sprintf("%s: %s", $nameNormalized, $value), false);
             }
         }
 
